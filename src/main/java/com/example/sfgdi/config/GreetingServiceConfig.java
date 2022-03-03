@@ -10,11 +10,9 @@ import com.example.sfgdi.services.ConstructorInjectedGreetingService;
 import com.example.sfgdi.services.PrimaryGreetingService;
 import com.example.sfgdi.services.PropertyInjectedGreetingService;
 import com.example.sfgdi.services.SetterInjectedGreetingService;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.*;
 
+@ImportResource("classpath:sfgdi-config.xml")
 @Configuration
 public class GreetingServiceConfig {
 
@@ -60,10 +58,12 @@ public class GreetingServiceConfig {
         return new PrimaryGreetingService();
     }
 
-    @Bean
-    ConstructorInjectedGreetingService constructorInjectedGreetingService() {
+    //the constructor bean is defined in the xml config file in the resources. On top, you can make
+    //sure the greetingserviceconfig looks for the xml file by @importresource annotation.
+    //@Bean
+   /* ConstructorInjectedGreetingService constructorInjectedGreetingService() {
         return new ConstructorInjectedGreetingService();
-    }
+    }*/
 
     @Bean
     PropertyInjectedGreetingService propertyInjectedGreetingService() {
